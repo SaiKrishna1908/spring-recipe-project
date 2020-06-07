@@ -1,6 +1,8 @@
 package com.spring.project.recipe.Model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Recipe {
@@ -20,6 +22,9 @@ public class Recipe {
     //Lob is used to specify a large object
     @Lob
     private Byte[] image;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingredients;
 
     //TODO add
     //Difficulty difficulty
@@ -89,5 +94,29 @@ public class Recipe {
 
     public void setImage(Byte[] image) {
         this.image = image;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public Notes getNotes() {
+        return notes;
+    }
+
+    public void setNotes(Notes notes) {
+        this.notes = notes;
     }
 }

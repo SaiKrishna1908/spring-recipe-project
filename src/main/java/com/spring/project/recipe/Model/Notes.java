@@ -2,6 +2,7 @@ package com.spring.project.recipe.Model;
 
 import javax.persistence.*;
 
+@Entity
 public class Notes {
 
     //lob is used when a large object is expected
