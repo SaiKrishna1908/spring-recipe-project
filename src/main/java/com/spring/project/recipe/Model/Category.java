@@ -1,9 +1,15 @@
 package com.spring.project.recipe.Model;
 
+import lombok.*;
+
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
+@NoArgsConstructor
+@Data
 @Entity
+@EqualsAndHashCode(exclude = "recipes")
 public class Category {
 
     @Id
@@ -12,23 +18,8 @@ public class Category {
     private String description;
 
     @ManyToMany(mappedBy = "categories")
-    private Set<Recipe> recipes;
+    private Set<Recipe> recipes = new HashSet<>();
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public Set<Recipe> getRecipeSet() {
         return recipes;
@@ -37,4 +28,9 @@ public class Category {
     public void setRecipeSet(Set<Recipe> recipes) {
         this.recipes = recipes;
     }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof Category;
+    }
+
 }

@@ -1,33 +1,28 @@
 package com.spring.project.recipe.Controller;
 
-import com.spring.project.recipe.Model.Category;
-import com.spring.project.recipe.Model.UnitOfMeasure;
-import com.spring.project.recipe.Repos.CategoryRepository;
-import com.spring.project.recipe.Repos.UnitOfMeasureRepository;
+
+
+import com.spring.project.recipe.Service.RecipeService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.Optional;
+
 
 @Controller
+@RequiredArgsConstructor
+@Slf4j
 public class IndexController {
 
-    private UnitOfMeasureRepository unitOfMeasureRepository;
-    private CategoryRepository categoryRepository;
-
-    public IndexController(UnitOfMeasureRepository unitOfMeasureRepository, CategoryRepository categoryRepository) {
-        this.unitOfMeasureRepository = unitOfMeasureRepository;
-        this.categoryRepository = categoryRepository;
-    }
+    private final RecipeService recipeService;
 
     @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
-    public String index(){
-        Optional<Category> category= categoryRepository.findByDescription("Indian");
-        Optional<UnitOfMeasure> unitOfMeasure = unitOfMeasureRepository.findByUom("table-spoon");
-
-        System.out.println("Category id: "+category.get().getId());
-        System.out.println("Unit of measure id: "+unitOfMeasure.get().getId());
+    public String index(Model model){
+      //  System.out.println(recipeService.getRecipe().size());
+        model.addAttribute("recipe", recipeService.getRecipe());
         return "index";
     }
 }
