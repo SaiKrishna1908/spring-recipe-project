@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @RequiredArgsConstructor
@@ -15,6 +16,7 @@ public class RecipeServiceImpl implements RecipeService {
 
     private final RecipeRepository recipeRepository;
 
+
     @Override
     public Set<Recipe> getRecipe() {
         Set<Recipe> set = new HashSet<>();
@@ -22,4 +24,17 @@ public class RecipeServiceImpl implements RecipeService {
         recipeRepository.findAll().forEach(set::add);
         return set;
     }
+
+    @Override
+    public Recipe findById(Long id) {
+        Optional<Recipe> optional;
+        optional = recipeRepository.findById(id);
+
+        if(!optional.isPresent()){
+            throw new RuntimeException("No Recipe with specified id found");
+        }
+        else return optional.get();
+    }
+
+
 }

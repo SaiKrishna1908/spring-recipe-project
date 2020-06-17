@@ -10,6 +10,8 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @EqualsAndHashCode(exclude = {"notes","categories"})
 @Entity
 public class Recipe {
@@ -21,6 +23,7 @@ public class Recipe {
     private String description;
     private Integer prepTime;
     private Integer cookTime;
+
     private Integer servings;
     private String source;
     private String url;
