@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="application/javascript" th:href="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}">
+
+    <script rel="script" th:href="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+</head>
+<body>
+<div class="container-fluid">
+
+
+    <div class="container" style="margin-top: 5em">
+        <div class="row">
+            <div class="col-4" >
+                <div class="card border-primary">
+                <div class="card-body">
+                    <h3 class="card-title">Description</h3>
+                    <p class="card-text" th:text="${recipe.description}">Description</p>
+                </div>
+                </div>
+            </div>
+            <div class="col-4 text-center ">
+                <div class="card border-primary">
+                <div class="card-body">
+                    <h3 class="card-title">Preperation Time</h3>
+                    <p class="card-text" th:text="${recipe.prepTime}+' minutes'">Preptime</p>
+                </div>
+                </div>
+            </div>
+            <div class="col-4 text-center ">
+                <div class="card border-primary">
+                <div class="card-body">
+                    <h3 class="card-title">Cook Time</h3>
+                    <p class="card-text" th:text="${recipe.cookTime}+' minutes'">Cook time</p>
+                </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container" style="margin-top: 1em">
+        <div class="row">
+            <div class="col-12">
+                <div class="card" style="border-top-color: #4174ff; border-top-width: 2em; border-radius: 3px;">
+                    <div class="card-body">
+                        <h3 class="card-title">Directions</h3>
+                        <p class="card-text" th:text="${recipe.directions}">
+                            Directions
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container" style="margin-top: 1em">
+        <div class="row">
+            <div class="col-12">
+                <div class="card" style="border-top-color: #4174ff; border-top-width: 2em; border-radius: 3px;">
+                    <div class="card-body">
+                        <h3 class="card-title">Ingredient's</h3>
+                        <ul>
+                            <li class="card-text" th:each="i : ${recipe.ingredients}"
+                                th:text="${i.amount}+' '+${i.unitOfMeasure.uom}"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 1em">
+        <div class="row">
+            <div class="col-12">
+                <div class="card" style="border-top-color: #4174ff; border-top-width: 2em; border-radius: 3px;">
+                    <div class="card-body">
+                        <h3 class="card-title">Note's</h3>
+
+                        <p class="card-text" th:text="${recipe.getNotes().getNotes()}"></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

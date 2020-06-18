@@ -9,9 +9,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 @Slf4j
@@ -21,6 +23,8 @@ class RecipeServiceImplTest {
 
     @Mock
     RecipeRepository recipeRepository;
+
+
 
     @BeforeEach
     void setUp() {
@@ -41,5 +45,15 @@ class RecipeServiceImplTest {
         Set<Recipe> recipeSet = recipeService.getRecipe();
         log.debug(Integer.toString(recipeSet.size()));
         assertEquals(recipeSet.size(), 1);
+    }
+
+    @Test
+    void findById(){
+        Recipe recipe = Recipe.builder().id(1L).build();
+
+        when(recipeRepository.findById(anyLong())).thenReturn(Optional.of(recipe));
+
+        Recipe idrecipe = recipeRepository.findById(1L).get();
+        assertEquals(1L, idrecipe.getId());
     }
 }
