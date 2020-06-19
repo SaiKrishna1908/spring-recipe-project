@@ -2,13 +2,11 @@ package com.spring.project.recipe.Model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.hibernate.annotations.Fetch;
-import org.springframework.beans.factory.annotation.Value;
+
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-import static javax.persistence.FetchType.EAGER;
 
 @Data
 @Entity

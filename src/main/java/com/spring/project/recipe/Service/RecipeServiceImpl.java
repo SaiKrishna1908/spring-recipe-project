@@ -2,9 +2,15 @@ package com.spring.project.recipe.Service;
 
 import com.spring.project.recipe.Model.Recipe;
 import com.spring.project.recipe.Repos.RecipeRepository;
+import com.spring.project.recipe.commands.RecipeCommand;
+import com.spring.project.recipe.transformer.RecipeCommandTransformer;
+import com.spring.project.recipe.transformer.RecipeTransformer;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -14,7 +20,10 @@ import java.util.Set;
 public class RecipeServiceImpl implements RecipeService {
 
 
+
     private final RecipeRepository recipeRepository;
+    private final RecipeTransformer recipeTransformer;
+    private final RecipeCommandTransformer recipeCommandTransformer;
 
 
     @Override
@@ -34,6 +43,15 @@ public class RecipeServiceImpl implements RecipeService {
             throw new RuntimeException("No Recipe with specified id found");
         }
         else return optional.get();
+    }
+
+    @Override
+    @Transactional
+    public RecipeCommand saveRecipeCommand(RecipeCommand recipeCommand) {
+        Recipe detached = recipeTransformer.convert(recipeCommand);
+
+        Recipe savedRecipe = recipeRepository.save(detached);
+        return recipeCommandTransformer.convert(savedRecipe);
     }
 
 

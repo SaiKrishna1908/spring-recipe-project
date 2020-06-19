@@ -10,6 +10,8 @@ import java.util.Set;
 @Data
 @Entity
 @EqualsAndHashCode(exclude = "recipes")
+@AllArgsConstructor
+@Builder
 public class Category {
 
     @Id
@@ -21,16 +23,5 @@ public class Category {
     private Set<Recipe> recipes = new HashSet<>();
 
 
-    public Set<Recipe> getRecipeSet() {
-        return recipes;
-    }
-
-    public void setRecipeSet(Set<Recipe> recipes) {
-        this.recipes = recipes;
-    }
-
-    protected boolean canEqual(final Object other) {
-        return other instanceof Category;
-    }
 
 }
