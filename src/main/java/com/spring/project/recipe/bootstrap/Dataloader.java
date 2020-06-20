@@ -30,6 +30,8 @@ public class Dataloader implements CommandLineRunner {
     @Transactional
     @Override
     public void run(String... args) throws Exception {
+
+        log.debug("loading data...");
         Recipe guacamoleRecipe = new Recipe();
         guacamoleRecipe.setPrepTime(10);
         guacamoleRecipe.setCookTime(5);

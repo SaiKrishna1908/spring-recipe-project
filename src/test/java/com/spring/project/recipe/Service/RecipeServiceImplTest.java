@@ -95,4 +95,31 @@ class RecipeServiceImplTest {
 
         assertEquals(savedRecipe.getId(), recipeCommand1.getId());
     }
+
+    @Test
+    void testGetById(){
+      Recipe recipe = new Recipe();
+      recipe.setId(1L);
+
+      Optional<Recipe> optionalRecipe = Optional.of(recipe);
+
+      when(recipeRepository.findById(anyLong())).thenReturn(optionalRecipe);
+
+      RecipeCommand recipeCommand = new RecipeCommand();
+      recipeCommand.setId(1L);
+
+      when(recipeCommandTransformer.convert(any())).thenReturn(recipeCommand);
+
+      RecipeCommand recipeCommand1 = recipeService.getById(1L);
+
+      verify(recipeRepository,times(1)).findById(any());
+
+    }
+
+    @Test
+    void testDeleteById(){
+        recipeService.deleteById(any());
+        verify(recipeRepository, times(1)).deleteById(any());
+    }
+    //Todo Testing on getById and deleteById
 }

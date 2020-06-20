@@ -14,6 +14,8 @@
 
     <form th:object="${recipe}" th:action="@{/recipe/}" method="post"  >
         <input type="hidden" th:field="*{id}">
+
+<!-- Description, Cooktime, preptime       -->
         <div class="container" style="margin-top: 5em">
             <div class="row">
                 <div class="col card-group">
@@ -36,6 +38,37 @@
                         <div class="card-body form-group">
                             <label>Prep Time</label>
                             <textarea type="text" class="form-control" th:field="*{prepTime}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+<!--        Serving, Source, url, Difficulty-->
+        <div class="container" style="margin-top: 1em">
+            <div class="row">
+                <div class="col card-group">
+                    <div class="card border-primary ">
+                        <div class="card-body form-group">
+                            <label>Servings</label>
+                            <textarea type="text" th:field="*{servings}" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="card border-primary">
+                        <div class="card-body form-group">
+                            <label>Author</label>
+                            <input type="text" th:field="*{cookTime}" class="form-control"/>
+                            <label>Original Source Url</label>
+                            <input type="text" th:field="*{url}" class="form-control"/>
+                        </div>
+                    </div>
+
+                    <div class="card border-primary">
+                        <div class="card-body form-group">
+                            <label>Difficult</label>
+                            <textarea type="text" class="form-control" th:field="*{difficulty}"/>
                         </div>
                     </div>
                 </div>
@@ -95,7 +128,8 @@
     </form>
 
 
-<!--TODO add Ingredient's, servings, source, url, difficulty, categories-->
+
+<!--TODO add Ingredient's, categories-->
 </div>
 </body>
 </html>

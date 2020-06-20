@@ -16,14 +16,15 @@ public class RecipeController {
 
     private final RecipeService recipeService;
 
-    @RequestMapping(value = "/recipe/show/{id}",method = RequestMethod.GET)
+    @GetMapping
+    @RequestMapping(value = "/recipe/{id}/show",method = RequestMethod.GET)
     public String findById(@PathVariable String id, Model model){
         model.addAttribute("recipe", recipeService.findById(Long.parseLong(id)));
         return "recipe/show";
     }
 
-
-    @RequestMapping(value = "recipe/new")
+    @GetMapping
+    @RequestMapping(value = "/recipe/new")
     public String getRecipeCommand(Model model){
         model.addAttribute("recipe", new RecipeCommand());
         return "recipe/recipeform";
@@ -33,6 +34,21 @@ public class RecipeController {
     @RequestMapping("recipe")
     public String saveRecipe(@ModelAttribute RecipeCommand recipeCommand){
         RecipeCommand savedCommand = recipeService.saveRecipeCommand(recipeCommand);
-        return "redirect:/recipe/show/"+savedCommand.getId();
+        return "redirect:/recipe/"+savedCommand.getId()+"/show";
     }
+
+    @GetMapping
+    @RequestMapping(value = "recipe/{id}/update")
+    public String updateRecipeCommand(@PathVariable String id,Model model){
+        model.addAttribute("recipe", recipeService.getById(Long.parseLong(id)));
+        return "recipe/recipeform";
+    }
+
+    @GetMapping
+    @RequestMapping("recipe/{id}/delete")
+    public String deleteRecipeCommand(@PathVariable String id){
+        recipeService.deleteById(Long.parseLong(id));
+        return "redirect:/";
+    }
+
 }
