@@ -53,12 +53,27 @@ public class Dataloader implements CommandLineRunner {
         guacamoleRecipe.getCategories().add(categoryRepository.findByDescription("Mexican").get());
 
 
-
         Ingredient guacamoleIngredient = new Ingredient();
         guacamoleIngredient.setAmount(new BigDecimal(1));
         guacamoleIngredient.setDescription("Ripe avacados");
         guacamoleIngredient.setUnitOfMeasure(unitOfMeasureRepository.findByUom("whole").get());
 
+        guacamoleRecipe.addIngredient(new Ingredient("ripe avocados", new BigDecimal(2),
+                unitOfMeasureRepository.findByUom("each").get()));
+        guacamoleRecipe.addIngredient(new Ingredient("Kosher salt", new BigDecimal(".5"),
+                unitOfMeasureRepository.findByUom("teaspoon").get()));
+        guacamoleRecipe.addIngredient(new Ingredient("fresh lime juice or lemon juice", new BigDecimal(2)
+                , unitOfMeasureRepository.findByUom("tablespoon").get()));
+        guacamoleRecipe.addIngredient(new Ingredient("minced red onion or thinly sliced green onion",
+                new BigDecimal(2), unitOfMeasureRepository.findByUom("tablespoon").get()));
+        guacamoleRecipe.addIngredient(new Ingredient("serrano chiles, stems and seeds removed, minced",
+                new BigDecimal(2), unitOfMeasureRepository.findByUom("each").get()));
+        guacamoleRecipe.addIngredient(new Ingredient("Cilantro", new BigDecimal(2),
+                unitOfMeasureRepository.findByUom("tablespoon").get()));
+        guacamoleRecipe.addIngredient(new Ingredient("freshly grated black pepper", new BigDecimal(2),
+                unitOfMeasureRepository.findByUom("dash").get()));
+        guacamoleRecipe.addIngredient(new Ingredient("ripe tomato, seeds and pulp removed, chopped",
+                new BigDecimal(".5"), unitOfMeasureRepository.findByUom("each").get()));
 
         Notes guacamoleNotes = new Notes();
         guacamoleNotes.setNotes("All you really need to make guacamole is ripe avocados and salt. After that, a " +
@@ -97,29 +112,64 @@ public class Dataloader implements CommandLineRunner {
         tacoRecipe.getCategories().add(categoryRepository.findByDescription("Homemade").get());
 
 
-        Ingredient tacoIngredient = new Ingredient();
-        tacoIngredient.setAmount(new BigDecimal(2));
-        tacoIngredient.setDescription("ancho chilli powder");
-        tacoIngredient.setUnitOfMeasure(unitOfMeasureRepository.findByUom("tablespoons").get());
+
+
+        tacoRecipe.addIngredient(new Ingredient("Ancho Chili Powder", new BigDecimal(2),
+                unitOfMeasureRepository.findByUom("tablespoon").get()));
+        tacoRecipe.addIngredient(new Ingredient("Dried Oregano", new BigDecimal(1),
+                unitOfMeasureRepository.findByUom("teaspoon").get()));
+        tacoRecipe.addIngredient(new Ingredient("Dried Cumin", new BigDecimal(1),
+                unitOfMeasureRepository.findByUom("teaspoon").get()));
+        tacoRecipe.addIngredient(new Ingredient("Sugar", new BigDecimal(1),
+                unitOfMeasureRepository.findByUom("teaspoon").get()));
+        tacoRecipe.addIngredient(new Ingredient("Salt", new BigDecimal(".5"),
+                unitOfMeasureRepository.findByUom("teaspoon").get()));
+        tacoRecipe.addIngredient(new Ingredient("Clove of Garlic, Choppedr", new BigDecimal(1),
+                unitOfMeasureRepository.findByUom("each").get()));
+        tacoRecipe.addIngredient(new Ingredient("finely grated orange zestr", new BigDecimal(1),
+                unitOfMeasureRepository.findByUom("tablespoon").get()));
+        tacoRecipe.addIngredient(new Ingredient("fresh-squeezed orange juice", new BigDecimal(3),
+                unitOfMeasureRepository.findByUom("tablespoon").get()));
+        tacoRecipe.addIngredient(new Ingredient("Olive Oil", new BigDecimal(2),
+                unitOfMeasureRepository.findByUom("tablespoon").get()));
+        tacoRecipe.addIngredient(new Ingredient("boneless chicken thighs", new BigDecimal(4),
+                unitOfMeasureRepository.findByUom("tablespoon").get()));
+        tacoRecipe.addIngredient(new Ingredient("small corn tortillasr", new BigDecimal(8),
+                unitOfMeasureRepository.findByUom("each").get()));
+        tacoRecipe.addIngredient(new Ingredient("packed baby arugula", new BigDecimal(3),
+                unitOfMeasureRepository.findByUom("cups").get()));
+        tacoRecipe.addIngredient(new Ingredient("medium ripe avocados, slic", new BigDecimal(2),
+                unitOfMeasureRepository.findByUom("each").get()));
+        tacoRecipe.addIngredient(new Ingredient("radishes, thinly sliced", new BigDecimal(4),
+                unitOfMeasureRepository.findByUom("each").get()));
+        tacoRecipe.addIngredient(new Ingredient("cherry tomatoes, halved", new BigDecimal(".5"),
+                unitOfMeasureRepository.findByUom("pint").get()));
+        tacoRecipe.addIngredient(new Ingredient("red onion, thinly sliced", new BigDecimal(".25"),
+                unitOfMeasureRepository.findByUom("each").get()));
+        tacoRecipe.addIngredient(new Ingredient("Roughly chopped cilantro", new BigDecimal(4),
+                unitOfMeasureRepository.findByUom("each").get()));
+        tacoRecipe.addIngredient(new Ingredient("cup sour cream thinned with 1/4 cup milk", new BigDecimal(4),
+                unitOfMeasureRepository.findByUom("cups").get()));
+        tacoRecipe.addIngredient(new Ingredient("lime, cut into wedges", new BigDecimal(4),
+                unitOfMeasureRepository.findByUom("each").get()));
 
 
         Notes tacoNotes = new Notes();
-        tacoNotes.setNotes("We have a family motto and it is this: Everything goes better in a tortilla.\n"+
+        tacoNotes.setNotes("We have a family motto and it is this: Everything goes better in a tortilla.\n" +
                 "Any and every kind of leftover can go inside a warm tortilla, usually with a healthy dose of pickled\n" +
                 "jalapenos. I can always sniff out a late-night snacker when the aroma of tortillas heating in a hot\n" +
                 "pan on the stove comes wafting through the house.\n");
 
 
-        tacoRecipe.getIngredients().add(tacoIngredient);
+
         tacoRecipe.setNotes(tacoNotes);
 
         tacoNotes.setRecipe(tacoRecipe);
-        tacoIngredient.setRecipe(tacoRecipe);
+
         recipeRepository.save(tacoRecipe);
 
         /*------------------------------------------------------------------------------------------------------------*/
         System.out.println("Data Initialized... ");
-
 
 
     }

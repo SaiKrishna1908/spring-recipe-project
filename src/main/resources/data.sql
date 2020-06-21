@@ -18,4 +18,6 @@ INSERT INTO Unit_Of_Measure(UOM) VALUES('millilitre')
 INSERT INTO Unit_Of_Measure(UOM) VALUES('millilitres')
 INSERT INTO Unit_Of_Measure(UOM) VALUES ('dash')
 INSERT INTO Unit_Of_Measure(UOM) VALUES ('whole')
-
+INSERT INTO Unit_Of_Measure(UOM) VALUES('each')
+INSERT INTO Unit_Of_Measure(UOM) VALUES('cups')
+INSERT INTO Unit_Of_Measure(UOM) VALUES('pint')

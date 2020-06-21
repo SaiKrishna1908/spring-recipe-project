@@ -1,6 +1,7 @@
 package com.spring.project.recipe.Controller;
 
 import com.spring.project.recipe.Model.Ingredient;
+import com.spring.project.recipe.Service.IngredientService;
 import com.spring.project.recipe.Service.RecipeService;
 import com.spring.project.recipe.commands.RecipeCommand;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,13 +27,15 @@ class IngredientControllerTest {
     @Mock
     RecipeService recipeService;
 
+    @Mock
+    IngredientService ingredientService;
 
     IngredientController ingredientController;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        ingredientController = new IngredientController(recipeService);
+        ingredientController = new IngredientController(recipeService, ingredientService);
     }
 
     @Test
