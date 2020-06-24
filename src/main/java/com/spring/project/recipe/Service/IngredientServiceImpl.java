@@ -65,8 +65,13 @@ public class IngredientServiceImpl implements IngredientService {
                     -> ingredient1.getId().equals(ingredientCommand.getId())).findFirst();
 
             if(!ingredient.isPresent()){
+                //new Ingredient
                 log.error("Ingredient not found");
-                recipe.addIngredient(ingredientTransformer.convert(ingredientCommand));
+                Ingredient toSaveIngredient= ingredientTransformer.convert(ingredientCommand);
+                toSaveIngredient.setRecipe(recipe);
+                recipe.addIngredient(toSaveIngredient);
+
+
             }
 
             else{
@@ -79,12 +84,24 @@ public class IngredientServiceImpl implements IngredientService {
 
             }
 
+
+
+
             Recipe savedRecipe = recipeRepository.save(recipe);
 
-            return ingredientCommandTransformer.convert(
-                    savedRecipe.getIngredients().stream().filter(ingredient1 -> ingredient1.getId().
-                            equals(ingredientCommand.getId())).findFirst().get()
-            );
+            Optional<Ingredient> savedIngredientOptional = savedRecipe.getIngredients().stream().filter(ingredient1
+                    -> ingredient1.getId().equals(ingredientCommand.getId())).findFirst();
+
+            if(!savedIngredientOptional.isPresent()){
+                //this is the case when new Ingredient is added
+                savedIngredientOptional =savedRecipe.getIngredients().stream().filter(ingredient1 -> ingredient1.getDescription()
+                        .toLowerCase().equals(ingredientCommand.getDescription().toLowerCase()))
+                        .filter(ingredient1 -> ingredient1.getUnitOfMeasure().getId()
+                                .equals(ingredientCommand.getUnitOfMeasureCommand().getId()))
+                        .filter(ingredient1 -> ingredient1.getAmount().equals(ingredientCommand.getAmount())).findFirst();
+            }
+            return ingredientCommandTransformer.convert(savedIngredientOptional.get());
+
         }
     }
 

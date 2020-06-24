@@ -102,8 +102,16 @@ class IngredientControllerTest {
         when(ingredientService.updateIngredient(any())).thenReturn(ingredientCommand);
 
         mockMvc.perform(post("/recipe/1/ingredient").contentType(MediaType.APPLICATION_FORM_URLENCODED))
-                .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/recipe/"
-                        +ingredientCommand.getId()+"/ingredient/"+ingredientCommand.getId()+"/view"));
+                .andExpect(status().is3xxRedirection());
+
+    }
+
+    @Test
+    void newRecipeIngredient() throws Exception{
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(ingredientController).build();
+
+        mockMvc.perform(get("/recipe/1/ingredient/new")).andExpect(status().isOk())
+            .andExpect(model().attributeExists("ingredients","uoms"))
+            .andExpect(view().name("recipe/ingredient/IngredientForm"));
     }
 }
