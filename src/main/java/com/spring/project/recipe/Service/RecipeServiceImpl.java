@@ -27,6 +27,7 @@ public class RecipeServiceImpl implements RecipeService {
 
 
     @Override
+    @Transactional
     public Set<Recipe> getRecipe() {
         Set<Recipe> set = new HashSet<>();
 
@@ -35,6 +36,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
+    @Transactional
     public Recipe findById(Long id) {
         Optional<Recipe> optional;
         optional = recipeRepository.findById(id);

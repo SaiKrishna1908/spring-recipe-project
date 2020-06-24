@@ -12,7 +12,7 @@
 <body>
 <div class="container-fluid">
 
-    <form th:object="${recipe}" th:action="@{/recipe/}" method="post"  >
+    <form th:object="${recipe}" th:action="@{/recipe}" method="post"  >
         <input type="hidden" th:field="*{id}">
 
 <!-- Description, Cooktime, preptime       -->
@@ -94,13 +94,16 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card" style="border-top-color: #4174ff; border-top-width: 2em; border-radius: 3px;">
-                        <div class="card-body">
+                        <div class="card-body" >
+                            <a th:href="'/recipe/'+${recipe.id}+'/ingredients'"><button type="submit" class="btn btn-primary">Edit</button></a>
                             <h3 class="card-title">Ingredient's</h3>
+
                             <ul>
                                 <li class="card-text" th:each="i : ${recipe.ingredientCommands}  "
                                     th:text="${i.amount}+' '+${i.unitOfMeasureCommand.uom} " ></li>
                             </ul>
                         </div>
+
                     </div>
                 </div>
             </div>

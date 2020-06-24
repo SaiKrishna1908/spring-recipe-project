@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe</title>
+
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="application/javascript" th:href="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}">
+
+    <script rel="script" th:href="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+</head>
+<body>
+
+<form th:object="${ingredients}" th:action="@{'/recipe/'+${ingredients.recipeId}+'/ingredient'}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    <input type="hidden" name="ingredients.recipeId" th:field="*{recipeId}" />
+    <div class="container" style="margin-top: 5em">
+        <div class="row">
+            <div class="col card-group">
+                <div class="card border-primary ">
+                    <div class="card-body form-group">
+                        <label>Description</label>
+                        <input type="text" th:field="*{description}" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="card border-primary">
+                    <div class="card-body form-group">
+                        <label>amount</label>
+                        <input type="number" th:field="*{amount}" class="form-control"/>
+                    </div>
+                </div>
+
+
+                <div class="card border-primary">
+                    <div class="card-body form-group">
+                        <label>Uom</label>
+                        <select class="form-control" name="unitOfMeasureCommand.id">
+                            <option th:each="uom : ${uoms}"
+                                    th:value="${uom.id}"
+                                    th:selected="${uom.id.equals(ingredients.unitOfMeasureCommand.id)}"
+                                    th:text="${uom.uom}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="margin-top: 1em">
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+</body>
+</html>

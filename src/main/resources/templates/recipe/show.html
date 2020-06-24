@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Recipe</title>
 
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
     <link rel="stylesheet" type="application/javascript" th:href="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}">
@@ -109,15 +109,18 @@
         <div class="row">
             <div class="col-12">
                 <div class="card" style="border-top-color: #4174ff; border-top-width: 2em; border-radius: 3px;">
+
                     <div class="card-body">
-                        <h3 class="card-title"><a href="#" th:href="'/recipe/'+${recipe.id}+'/ingredient'"
+                        <h3 class="card-title"><a href="#" th:href="'/recipe/'+${recipe.id}+'/ingredients'"
                                                   style="color: black">Ingredient's</a></h3>
                         <ul>
                             <li class="card-text" th:each="i : ${recipe.ingredients}"
                                 th:text="${i.amount}+' '+${i.unitOfMeasure.uom}+' '+${i.description}"></li>
                         </ul>
                     </div>
+
                 </div>
+
             </div>
         </div>
     </div>
@@ -153,7 +156,7 @@
         </div>
     </div>
 
-    <!--TODO  categories-->
+
 
 
 </div>

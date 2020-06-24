@@ -18,7 +18,7 @@ public class UnitOfMeasureCommandTransformer implements Converter<UnitOfMeasure,
             return null;
 
         final UnitOfMeasureCommand unitOfMeasureCommand = new UnitOfMeasureCommand();
-        unitOfMeasureCommand .setId(unitOfMeasure.getId());
+        unitOfMeasureCommand.setId(unitOfMeasure.getId());
         unitOfMeasureCommand.setUom(unitOfMeasure.getUom());
 
         return unitOfMeasureCommand;
