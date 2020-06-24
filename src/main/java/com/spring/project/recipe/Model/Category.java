@@ -23,5 +23,4 @@ public class Category {
     private Set<Recipe> recipes = new HashSet<>();
 
 
-
 }

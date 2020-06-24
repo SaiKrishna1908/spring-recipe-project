@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 public class Ingredient {
 
 
-    public Ingredient(String description , BigDecimal bigDecimal, UnitOfMeasure uom){
+    public Ingredient(String description, BigDecimal bigDecimal, UnitOfMeasure uom) {
         this.description = description;
         this.amount = bigDecimal;
         unitOfMeasure = uom;

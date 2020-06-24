@@ -21,7 +21,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -113,5 +113,16 @@ class IngredientControllerTest {
         mockMvc.perform(get("/recipe/1/ingredient/new")).andExpect(status().isOk())
             .andExpect(model().attributeExists("ingredients","uoms"))
             .andExpect(view().name("recipe/ingredient/IngredientForm"));
+    }
+
+    @Test
+    void deleteRecipeIngredient() throws  Exception{
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(ingredientController).build();
+
+
+        mockMvc.perform(get("/recipe/1/ingredient/1/delete")).andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/recipe/1/ingredients"));
+
+        verify(ingredientService, times(1)).deleteByRecipeIdIngredientId(any(),any());
     }
 }
