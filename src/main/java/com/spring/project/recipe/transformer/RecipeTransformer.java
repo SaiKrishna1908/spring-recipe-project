@@ -39,6 +39,9 @@ public class RecipeTransformer implements Converter<RecipeCommand, Recipe> {
         recipe.setDirections(recipeCommand.getDirections());
         recipe.setDifficulty(recipeCommand.getDifficulty());
 
+        if(recipeCommand.getImage() != null)
+            recipe.setImage(recipeCommand.getImage());
+
         recipe.setNotes(notesTransformer.convert(recipeCommand.getNotesCommand()));
 
         for(CategoryCommand cc : recipeCommand.getCategoryCommands()){

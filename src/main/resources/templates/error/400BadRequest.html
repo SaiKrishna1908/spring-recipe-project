@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>400 Not Found</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+    <link rel="stylesheet"  th:href="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}">
+
+    <script rel="script" th:href="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+</head>
+<body>
+    <div class="container" style="margin-top: 5em">
+        <h2>400 Bad Request</h2>
+        <h3 th:text="${exception.getMessage()}"></h3>
+    </div>
+</body>
+</html>

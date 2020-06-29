@@ -36,6 +36,7 @@ public class RecipeCommandTransformer implements Converter<Recipe,RecipeCommand>
         recipeCommand.setDescription(recipe.getDescription());
         recipeCommand.setPrepTime(recipe.getPrepTime());
         recipeCommand.setServings(recipe.getServings());
+        recipeCommand.setImage(recipe.getImage());
         recipeCommand.setSource(recipe.getSource());
         recipeCommand.setUrl(recipe.getUrl());
         recipeCommand.setDirections(recipe.getDirections());

@@ -3,6 +3,7 @@ package com.spring.project.recipe.Service;
 import com.spring.project.recipe.Model.Recipe;
 import com.spring.project.recipe.Repos.RecipeRepository;
 import com.spring.project.recipe.commands.RecipeCommand;
+import com.spring.project.recipe.exceptions.NotFoundException;
 import com.spring.project.recipe.transformer.RecipeCommandTransformer;
 import com.spring.project.recipe.transformer.RecipeTransformer;
 import lombok.AllArgsConstructor;
@@ -18,7 +19,6 @@ import java.util.Set;
 @RequiredArgsConstructor
 @Service
 public class RecipeServiceImpl implements RecipeService {
-
 
 
     private final RecipeRepository recipeRepository;
@@ -41,10 +41,9 @@ public class RecipeServiceImpl implements RecipeService {
         Optional<Recipe> optional;
         optional = recipeRepository.findById(id);
 
-        if(!optional.isPresent()){
-            throw new RuntimeException("No Recipe with specified id found");
-        }
-        else return optional.get();
+        if (!optional.isPresent()) {
+            throw new NotFoundException("Resource Not Found");
+        } else return optional.get();
     }
 
     @Override
@@ -59,8 +58,11 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     @Transactional
     public RecipeCommand getById(Long id) {
-        Recipe recipe = recipeRepository.findById(id).get();
-        return recipeCommandTransformer.convert(recipe);
+        Optional<Recipe> recipe = recipeRepository.findById(id);
+        if (!recipe.isPresent()) {
+            throw new NotFoundException("Recipe Not Found with id" + id.toString());
+        }
+        return recipeCommandTransformer.convert(recipe.get());
     }
 
     @Override
@@ -68,8 +70,6 @@ public class RecipeServiceImpl implements RecipeService {
     public void deleteById(Long id) {
         recipeRepository.deleteById(id);
     }
-
-
 
 
 }

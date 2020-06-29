@@ -3,6 +3,7 @@ package com.spring.project.recipe.Service;
 import com.spring.project.recipe.Model.Recipe;
 import com.spring.project.recipe.Repos.RecipeRepository;
 import com.spring.project.recipe.commands.RecipeCommand;
+import com.spring.project.recipe.exceptions.NotFoundException;
 import com.spring.project.recipe.transformer.RecipeCommandTransformer;
 import com.spring.project.recipe.transformer.RecipeTransformer;
 import lombok.extern.slf4j.Slf4j;
@@ -64,6 +65,16 @@ class RecipeServiceImplTest {
 
         Recipe idrecipe = recipeRepository.findById(1L).get();
         assertEquals(1L, idrecipe.getId());
+    }
+
+    @Test()
+    void getRecipeByIdNotFound(){
+        when(recipeRepository.findById(any())).thenReturn(Optional.empty());
+
+        NotFoundException exception = assertThrows(NotFoundException.class, ()->
+                recipeService.findById(5L), "Recipe Not Found");
+        assertTrue(exception.getMessage().contains("Resource Not Found"));
+
     }
 
     @Test

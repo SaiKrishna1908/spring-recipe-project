@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe</title>
+
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="application/javascript" th:href="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}">
+
+    <script rel="script" th:href="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+</head>
+<body>
+
+<div class="container" style="margin-top: 5em;">
+    <form th:object="${recipe}" method="post" th:action="@{'/recipe/'+${recipe.id}+'/image'}"
+          enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}">
+        <div class="row">
+            <div class="col-3">
+
+            </div>
+            <div class="col-6 form-group">
+                <label>Choose File</label>
+                <input type="file" class="form-control-file " id="imagefile" name="imagefile" >
+            </div>
+            <div class="col-3">
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-3 "></div>
+            <div class="col-6 ">
+              <button type="submit" class="btn btn-primary">
+                  upload
+              </button>
+            </div>
+            <div class="col-3"></div>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>
