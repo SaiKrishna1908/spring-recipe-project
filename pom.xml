@@ -15,7 +15,8 @@
     <description>Spring Recipe Project</description>
 
     <properties>
-        <java.version>11</java.version>
+<!--        <java.version>11</java.version>-->
+        <jaxb.version>2.3.0</jaxb.version>
     </properties>
 
     <dependencies>
@@ -70,6 +71,11 @@
             <artifactId>hibernate-validator</artifactId>
             <version>6.0.19.Final</version>
         </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -100,10 +106,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
+<!--                <configuration>-->
+<!--                    <source>1.8</source>-->
+<!--                    <target>1.8</target>-->
+<!--                </configuration>-->
             </plugin>
         </plugins>
     </build>

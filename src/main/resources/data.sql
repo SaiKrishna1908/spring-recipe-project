@@ -1,23 +1,23 @@
 --Category
-INSERT INTO Category(Description) VALUES('Chinese')
-INSERT INTO Category(Description) VALUES('Indian')
-INSERT INTO Category(Description) VALUES('Thai')
-INSERT INTO Category(Description) VALUES('Homemade')
-INSERT INTO Category(Description) VALUES('Spicy')
-INSERT INTO Category(Description) VALUES('Mexican')
-INSERT INTO Category(Description) VALUES('Fast-food')
+INSERT INTO category(description) VALUES('Chinese');
+INSERT INTO category(description) VALUES('Indian');
+INSERT INTO category(description) VALUES('Thai');
+INSERT INTO category(description) VALUES('Homemade');
+INSERT INTO category(description) VALUES('Spicy');
+INSERT INTO category(description) VALUES('Mexican');
+INSERT INTO category(description) VALUES('Fast-food');
 
 --Unit of measure
-INSERT INTO Unit_Of_Measure(UOM) VALUES('tablespoon')
-INSERT INTO Unit_Of_Measure(UOM) VALUES('tablespoons')
-INSERT INTO Unit_Of_Measure(UOM) VALUES('teaspoon')
-INSERT INTO Unit_Of_Measure(UOM) VALUES('teaspoons')
-INSERT INTO Unit_Of_Measure(UOM) VALUES('milligram')
-INSERT INTO Unit_Of_Measure(UOM) VALUES('milligrams')
-INSERT INTO Unit_Of_Measure(UOM) VALUES('millilitre')
-INSERT INTO Unit_Of_Measure(UOM) VALUES('millilitres')
-INSERT INTO Unit_Of_Measure(UOM) VALUES ('dash')
-INSERT INTO Unit_Of_Measure(UOM) VALUES ('whole')
-INSERT INTO Unit_Of_Measure(UOM) VALUES('each')
-INSERT INTO Unit_Of_Measure(UOM) VALUES('cups')
-INSERT INTO Unit_Of_Measure(UOM) VALUES('pint')
+INSERT INTO unit_of_measure(uom) VALUES('tablespoon');
+INSERT INTO unit_of_measure(uom) VALUES('tablespoons');
+INSERT INTO unit_of_measure(uom) VALUES('teaspoon');
+INSERT INTO unit_of_measure(uom) VALUES('teaspoons');
+INSERT INTO unit_of_measure(uom) VALUES('milligram');
+INSERT INTO unit_of_measure(uom) VALUES('milligrams');
+INSERT INTO unit_of_measure(uom) VALUES('millilitre');
+INSERT INTO unit_of_measure(uom) VALUES('millilitres');
+INSERT INTO unit_of_measure(uom) VALUES ('dash');
+INSERT INTO unit_of_measure(uom) VALUES ('whole');
+INSERT INTO unit_of_measure(uom) VALUES('each');
+INSERT INTO unit_of_measure(uom) VALUES('cups');
+INSERT INTO unit_of_measure(uom) VALUES('pint');

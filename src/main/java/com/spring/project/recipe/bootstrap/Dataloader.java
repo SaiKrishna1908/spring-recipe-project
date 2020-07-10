@@ -6,6 +6,8 @@ import com.spring.project.recipe.Repos.RecipeRepository;
 import com.spring.project.recipe.Repos.UnitOfMeasureRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Service;
 
 
@@ -14,7 +16,8 @@ import java.math.BigDecimal;
 
 @Slf4j
 @Service
-public class Dataloader implements CommandLineRunner {
+@Transactional
+public class Dataloader implements ApplicationListener<ContextRefreshedEvent> {
 
     private final RecipeRepository recipeRepository;
     private final CategoryRepository categoryRepository;
@@ -29,7 +32,7 @@ public class Dataloader implements CommandLineRunner {
 
     @Transactional
     @Override
-    public void run(String... args) throws Exception {
+    public void onApplicationEvent(ContextRefreshedEvent event) {
 
         log.debug("loading data...");
         Recipe guacamoleRecipe = new Recipe();
